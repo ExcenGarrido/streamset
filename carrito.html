@@ -2,16 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carrito de Compras - Stream-Set</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrito - StreamSet</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="logo">
-        <a href="index.html"><img src="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.png" alt="Stream-Set logo" /></a>
+        <a href="index.html">
+          <img src="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.png" alt="Stream-Set logo" />
+        </a>
       </div>
       <div class="titulo">
         <h1>Stream-Set</h1>
@@ -24,23 +29,24 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="productos.html">Productos</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="carrito.html" class="carrito-link">Carrito (<span id="contador-carrito">0</span>)</a></li>
+        <li>
+          <a href="carrito.html" class="active" aria-label="Carrito de compras">
+            🛒 <span id="contador-carrito">0</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="carrito-section">
-      <h2>Tu Carrito de Compras</h2>
+  <main class="productos">
+    <h2>Tu Carrito</h2>
+    <div id="carrito-contenido"></div>
 
-      <div id="carrito-contenido">
-        <!-- Aquí se cargan los productos del carrito -->
-      </div>
-
-      <div id="total-carrito" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;">
-        Total: $0
-      </div>
-    </section>
+    <div class="carrito-botones" style="margin-top: 30px;">
+      <p id="total-carrito" style="font-size: 1.2rem; margin-bottom: 15px;">Total: $0</p>
+      <button id="btn-vaciar" class="btn-neon">Vaciar Carrito</button>
+      <button id="btn-finalizar" class="btn-neon">Finalizar Compra</button>
+    </div>
   </main>
 
   <footer>
