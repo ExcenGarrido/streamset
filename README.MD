@@ -50,7 +50,7 @@ Stream-Set/
 ## 🔗 Links de la entrega
 
 - 🗂️ Carpeta Drive: [https://drive.google.com/drive/folders/109bnB08O-FOCpD5b69bKoosIaDuotaah]
-- 🌐 Proyecto Online: [Colocar aquí el link de GitHub Pages]
+- 🌐 Proyecto Online: [https://excengarrido.github.io/streamset/]
 
 ---
 
