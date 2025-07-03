@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Micrófono RGB Pro",
+    "precio": 194990,
+    "imagen": "Images/Microfono HyperX Quadcast S RGB Black.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Teclado Mecánico RGB",
+    "precio": 233090,
+    "imagen": "Images/teclado.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Auricular Logitech G733 RGB",
+    "precio": 277903,
+    "imagen": "Images/auriculares.jpg"
+  }
+]

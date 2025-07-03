@@ -3,44 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carrito - Stream-Set</title>
+  <title>Carrito de Compras - Stream-Set</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.ico" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="logo">
-        <img src="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.png" alt="Stream-Set logo" />
+        <a href="index.html"><img src="Images/Gemini_Generated_Image_cdktc8cdktc8cdkt.png" alt="Stream-Set logo" /></a>
       </div>
       <div class="titulo">
         <h1>Stream-Set</h1>
         <p class="slogan">Equipá tu lugar, Elevá tu contenido</p>
       </div>
     </div>
+
     <nav>
       <ul class="nav-list">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="productos.html">Productos</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="carrito.html" class="active" aria-label="Carrito de compras">🛒 <span id="contador-carrito">0</span></a></li>
+        <li><a href="carrito.html" class="carrito-link">Carrito (<span id="contador-carrito">0</span>)</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="carrito">
-      <h2>Tu Carrito</h2>
-      <div id="carrito-container">
-        <!-- Aquí van los productos del carrito -->
+    <section class="carrito-section">
+      <h2>Tu Carrito de Compras</h2>
+
+      <div id="carrito-contenido">
+        <!-- Aquí se cargan los productos del carrito -->
       </div>
-      <div id="total-container">
-        <strong>Total: $<span id="total-carrito">0</span></strong>
+
+      <div id="total-carrito" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;">
+        Total: $0
       </div>
-      <button id="vaciar-carrito" class="btn-neon">Vaciar Carrito</button>
     </section>
   </main>
 
@@ -59,107 +58,6 @@
     </div>
   </footer>
 
-  <script>
-    // Cargar carrito desde localStorage o crear vacío
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    const carritoContainer = document.getElementById("carrito-container");
-    const totalCarrito = document.getElementById("total-carrito");
-    const contadorCarrito = document.getElementById("contador-carrito");
-    const vaciarBtn = document.getElementById("vaciar-carrito");
-
-    function mostrarCarrito() {
-      carritoContainer.innerHTML = "";
-      if (carrito.length === 0) {
-        carritoContainer.innerHTML = "<p>Tu carrito está vacío.</p>";
-        totalCarrito.textContent = "0";
-        contadorCarrito.textContent = "0";
-        return;
-      }
-
-      carrito.forEach((producto) => {
-        const productoDiv = document.createElement("div");
-        productoDiv.classList.add("carrito-producto");
-        productoDiv.innerHTML = `
-          <img src="${producto.imagen}" alt="${producto.nombre}" />
-          <div class="info-producto">
-            <h3>${producto.nombre}</h3>
-            <p>Precio unitario: $${producto.precio.toLocaleString("es-AR")}</p>
-            <label>Cantidad:
-              <input type="number" min="1" value="${producto.cantidad}" data-id="${producto.id}" class="cantidad-input" />
-            </label>
-            <p>Subtotal: $${(producto.precio * producto.cantidad).toLocaleString("es-AR")}</p>
-            <button class="btn-neon btn-eliminar" data-id="${producto.id}">Eliminar</button>
-          </div>
-        `;
-        carritoContainer.appendChild(productoDiv);
-      });
-
-      actualizarTotal();
-      actualizarContador();
-      agregarListenersCantidad();
-      agregarListenersEliminar();
-    }
-
-    function actualizarTotal() {
-      const total = carrito.reduce(
-        (acc, producto) => acc + producto.precio * producto.cantidad,
-        0
-      );
-      totalCarrito.textContent = total.toLocaleString("es-AR");
-    }
-
-    function actualizarContador() {
-      const totalCant = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-      contadorCarrito.textContent = totalCant;
-    }
-
-    function agregarListenersCantidad() {
-      const inputsCantidad = document.querySelectorAll(".cantidad-input");
-      inputsCantidad.forEach((input) => {
-        input.addEventListener("change", (e) => {
-          const id = Number(e.target.dataset.id);
-          const nuevaCantidad = Number(e.target.value);
-
-          if (nuevaCantidad < 1) {
-            e.target.value = 1;
-            return;
-          }
-
-          carrito = carrito.map((producto) =>
-            producto.id === id ? { ...producto, cantidad: nuevaCantidad } : producto
-          );
-
-          guardarCarrito();
-          mostrarCarrito();
-        });
-      });
-    }
-
-    function agregarListenersEliminar() {
-      const btnsEliminar = document.querySelectorAll(".btn-eliminar");
-      btnsEliminar.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const id = Number(e.target.dataset.id);
-          carrito = carrito.filter((producto) => producto.id !== id);
-          guardarCarrito();
-          mostrarCarrito();
-        });
-      });
-    }
-
-    function guardarCarrito() {
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-    }
-
-    vaciarBtn.addEventListener("click", () => {
-      carrito = [];
-      guardarCarrito();
-      mostrarCarrito();
-    });
-
-    // Inicializamos
-    mostrarCarrito();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
